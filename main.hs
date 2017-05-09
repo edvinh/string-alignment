@@ -28,4 +28,6 @@ maximaBy fn (x:xs) = [x | x <- xs, fn x == maximum(map fn xs)]
 type AlignmentType = (String,String)
 
 optAlignments :: String -> String -> [AlignmentType]
--- optAlignments [] ys = (replicate (length ys) '-', ys) TODO: Not done 
+optAlignments [] [] = [([], [])]
+optAlignments [] ys = [(replicate (length ys) '-', ys)] -- could've used recursion with attachHeads here instead
+optAlignments xs [] = [(xs, replicate (length xs) '-')]
